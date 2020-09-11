@@ -38,7 +38,7 @@ app.get('/request/:url', async (req, res) => {
     if(!url || url.length < 5 ){
          res.json({error: true, msg:"Invalid URL given"});
     }
-    let decoded_url = Buffer.from(url, 'base64').toString('ascii')
+    let decoded_url = Buffer.from(decodeURI(url), 'base64').toString('ascii')
     console.log('decoded_url = '+decoded_url)
     try {
         let sc = await justFetch(decoded_url)
